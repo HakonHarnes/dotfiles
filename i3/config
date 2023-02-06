@@ -1,0 +1,338 @@
+# ---------
+# autostart
+# ---------
+
+# -- applications
+exec --no-startup-id bitwarden-desktop
+exec --no-startup-id spotify-launcher
+exec --no-startup-id ntnui-calendar
+exec --no-startup-id thunderbird
+exec --no-startup-id calendar
+exec --no-startup-id yr
+
+# -- commands 
+exec --no-startup-id picom
+exec --no-startup-id tpconfig
+exec --no-startup-id speakermute
+exec --no-startup-id blueman-applet
+exec --no-startup-id xmousepasteblock
+exec --no-startup-id xbacklight -set 80
+exec --no-startup-id echo XHC > /proc/acpi/wakeup
+exec --no-startup-id $HOME/.config/autorandr/postswitch
+exec --no-startup-id echo 2 > /tmp/libinput_discrete_deltay_multiplier 
+# exec --no-startup-id nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+
+# -- i3 restart
+exec_always --no-startup-id bgconfig
+exec_always --no-startup-id scroll.py
+exec_always --no-startup-id xsettingsd
+exec_always --no-startup-id screenconfig
+exec_always --no-startup-id killall dunst
+exec_always --no-startup-id i3-autolayout autolayout
+exec_always --no-startup-id setxkbmap -layout 'us, no' -option 'grp:caps_switch, grp:switch' 
+
+# ---------------------
+# application shortcuts 
+# ---------------------
+
+# -- mod+x
+bindsym $mod+Return exec kitty
+bindsym $mod+w exec firefox
+
+# -- mod+alt+x
+bindsym $mod+$alt+backslash exec bitwarden-desktop
+bindsym $mod+$alt+BackSpace exec systemctl suspend
+bindsym $mod+$alt+bracketright exec github
+bindsym $mod+$alt+n exec notion-app
+bindsym $mod+$alt+s exec spotify-launcher
+bindsym $mod+$alt+b exec blueman-manager
+bindsym $mod+$alt+u exec ntnui-calendar
+bindsym $mod+$alt+e exec thunderbird
+bindsym $mod+$alt+g exec grammarly
+bindsym $mod+$alt+o exec overleaf
+bindsym $mod+$alt+c exec calendar
+bindsym $mod+$alt+p exec pcmanfm
+bindsym $mod+$alt+a exec chatgpt
+bindsym $mod+$alt+j exec jabref
+bindsym $mod+$alt+z exec slack
+bindsym $mod+$alt+y exec yr
+
+# -- config files
+bindsym $mod+$alt+i exec kitty -e nvim $HOME/.config/i3/config 
+bindsym $mod+$alt+f exec kitty -e nvim $HOME/.config/fish/config.fish
+bindsym $mod+$alt+l exec kitty -e nvim $HOME/.config/fish/alias.fish
+bindsym $mod+$alt+k exec kitty -e nvim $HOME/.config/kitty/kitty.conf
+bindsym $mod+$alt+v exec kitty -e nvim $HOME/.config/nvim
+bindsym $mod+$alt+t exec kitty -e nvim $HOME/.config/tmux/tmux.conf
+
+# --------------------
+# workspace assignment
+# --------------------
+
+# -- open applications on specific workspaces
+for_window [class="org.jabref.gui.JabRefMain"] move --no-auto-back-and-forth to workspace $ws-ref
+for_window [class="github-nativefier*"] move --no-auto-back-and-forth to workspace $ws-github
+for_window [class="thunderbird"] move --no-auto-back-and-forth to workspace $ws-email
+for_window [class="Spotify"] move --no-auto-back-and-forth to workspace $ws-music 
+for_window [class="Slack"] move --no-auto-back-and-forth to workspace $ws-slack
+
+# -- scratchpad 
+for_window [class="ntnui-calendar-nativefier*"] move scratchpad
+for_window [class="grammarly-nativefier*"] move scratchpad
+for_window [class="calendar-nativefier*"] move scratchpad
+for_window [class="chatgpt-nativefier*"] move scratchpad
+for_window [class="yr-nativefier*"] move scratchpad 
+for_window [class="Bitwarden"] move scratchpad
+
+# -----------
+# keybindings
+# -----------
+
+bindsym $mod+u [class="ntnui-calendar-nativefier*"] scratchpad show
+bindsym $mod+g [class="grammarly-nativefier*"] scratchpad show
+bindsym $mod+c [class="^calendar-nativefier*"] scratchpad show
+bindsym $mod+a [class="chatgpt-nativefier*"] scratchpad show
+bindsym $mod+backslash [class="Bitwarden"] scratchpad show
+bindsym $mod+y [class="yr-nativefier*"] scratchpad show
+bindsym $mod+t [class="kitty"] scratchpad show
+
+# kill application
+bindsym $mod+q kill
+bindsym $mod+Shift+q exec kill-fusion
+
+# toggle fullscreen
+bindsym $mod+f fullscreen toggle
+
+# switch focus between floating and tiled windows
+bindsym $mod+space focus mode_toggle
+
+# toggle floating window
+bindsym $mod+Shift+f floating toggle
+
+# run dmenu 
+bindsym $mod+d exec --no-startup-id dmenu_run_history -nb "#282c34" -sb "#607d8b" -fn 'Hack Nerd Font - 10'
+
+# media controls 
+# bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+# bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+# bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym F6 exec playerctl play-pause --player=spotify
+
+# brightness control 
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+# print
+bindsym Print exec screenshot selection
+bindsym Shift+Print exec screenshot screen
+bindsym Shift+Ctrl+Print exec screenshot window
+
+# --------
+# mod keys 
+# --------
+set $mod Mod4
+set $alt Mod1
+floating_modifier $mod
+
+# -------
+# borders 
+# -------
+
+for_window [class="^.*"] border pixel 3
+# for_window [workspace="13:&#xe62b;"] border pixel 0
+
+# -------
+# options
+# -------
+for_window [urgent=latest] focus
+
+bindsym $mod+Ctrl+l move workspace to output right 
+bindsym $mod+Ctrl+h move workspace to output left
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+workspace_auto_back_and_forth yes
+bindsym $mod+x workspace back_and_forth
+bindsym $mod+Shift+x move container to workspace back_and_forth; workspace back_and_forth
+
+hide_edge_borders none
+
+# ------------
+# change focus
+# ------------
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# -------------------
+# move focused window
+# -------------------
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# ----------
+# workspaces 
+# ----------
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws-pdf "11:&#xf1c1;"
+set $ws-ref "12:&#xf02d;"
+set $ws-code "13:&#xe62b;"
+set $ws-thesis "14:&#xf973;"
+set $ws-slack "14:&#xf3ef;"
+set $ws-music "15:&#xf1bc;"
+set $ws-email "16:&#xf01c;"
+set $ws-cal "17:&#xf133;"
+set $ws-notion "18:&#xf1b2;"
+set $ws-overleaf "19:&#xf032a;"
+set $ws-github "20:&#xeba1;"
+
+# -------------------
+# switch to workspace
+# -------------------
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+slash workspace $ws-code
+bindsym $mod+p workspace $ws-pdf
+bindsym $mod+z workspace $ws-slack
+bindsym $mod+e workspace $ws-email
+bindsym $mod+s workspace $ws-music
+bindsym $mod+b workspace $ws-ref
+bindsym $mod+n workspace $ws-notion
+bindsym $mod+o workspace $ws-overleaf
+bindsym $mod+bracketright workspace $ws-github
+bindsym $mod+period workspace $ws-thesis
+
+# ---------------------------
+# move container to workspace
+# ---------------------------
+bindsym $mod+Ctrl+1 move container to workspace number $ws1
+bindsym $mod+Ctrl+2 move container to workspace number $ws2
+bindsym $mod+Ctrl+3 move container to workspace number $ws3
+bindsym $mod+Ctrl+4 move container to workspace number $ws4
+bindsym $mod+Ctrl+5 move container to workspace number $ws5
+bindsym $mod+Ctrl+6 move container to workspace number $ws6
+bindsym $mod+Ctrl+7 move container to workspace number $ws7
+bindsym $mod+Ctrl+8 move container to workspace number $ws8
+bindsym $mod+Ctrl+9 move container to workspace number $ws9
+bindsym $mod+Ctrl+0 move container to workspace number $ws10
+bindsym $mod+Ctrl+slash move container to workspace $ws-code
+bindsym $mod+Ctrl+p move container to workspace $ws-pdf
+bindsym $mod+Ctrl+z move container to workspace $ws-slack
+bindsym $mod+Ctrl+e move container to workspace $ws-email
+bindsym $mod+Ctrl+s move container to workspace $ws-music
+bindsym $mod+Ctrl+b move container to workspace $ws-ref
+bindsym $mod+Ctrl+n move container to workspace $ws-notion
+bindsym $mod+Ctrl+o move container to workspace $ws-overleaf
+bindsym $mod+Ctrl+bracketright move container to workspace $ws-github
+bindsym $mod+Ctrl+period move container to workspace $ws-thesis
+
+# ----------------------------------------
+# move to workspace with focused container
+# ----------------------------------------
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+Shift+slash move container to workspace $ws-code; workspace $ws-code
+bindsym $mod+Shift+p move container to workspace $ws-pdf; workspace $ws-pdf
+bindsym $mod+Shift+z move container to workspace $ws-slack; workspace $ws-slack
+bindsym $mod+Shift+e move container to workspace $ws-email; workspace $ws-email
+bindsym $mod+Shift+s move container to workspace $ws-music; workspace $ws-music
+bindsym $mod+Shift+b move container to workspace $ws-ref; workspace $ws-ref
+bindsym $mod+Shift+n move container to workspace $ws-notion; workspace $ws-notion
+bindsym $mod+Shift+o move container to workspace $ws-overleaf; workspace $ws-overleaf
+bindsym $mod+Shift+bracketright move container to workspace $ws-github; workspace $ws-github
+bindsym $mod+Shift+period move container to workspace $ws-notion; workspace $ws-thesis
+
+# -----------------
+# reload/restart i3
+# -----------------
+# bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# ------
+# resize
+# ------
+bindsym $mod+r mode "resize"
+mode "resize" {
+  bindsym l resize shrink width 3 px or 3 ppt
+  bindsym k resize grow height 3 px or 3 ppt
+  bindsym j resize shrink height 3 px or 3 ppt
+  bindsym h resize grow width 3 px or 3 ppt
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+
+# -----------------
+# bar configuration
+# -----------------
+font xft:Hack Nerd Font 10
+bar {
+	i3bar_command i3bar
+	status_command i3status
+	position top
+
+	tray_output none
+	strip_workspace_numbers yes
+
+    colors {
+        background #21252B
+        statusline #FFFFFF
+        separator  #334147
+
+        #                  border  backgr. text
+        focused_workspace  #21252B #21252B #ffffff
+        active_workspace   #21252B #21252B #bfbfbf
+        inactive_workspace #21252B #21252B #586970
+        binding_mode       #21252B #21252B #ffffff
+        urgent_workspace   #21252B #21252B #E5201D
+    }
+}
+
+# hide/unhide i3status bar
+bindsym $mod+m bar mode toggle
+
+# Theme colors
+# class                   border  backgr. text    indic.   child_border
+  client.focused          #FFFFFF #607d8b #80FFF9 #607d8b
+  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+
+  client.background       #2B2C2B
