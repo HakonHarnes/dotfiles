@@ -7,15 +7,15 @@ local function map(mode, lhs, rhs, opts)
   if not keys.active[keys.parse({ lhs, mode = mode }).id] then
     opts = opts or {}
     opts.silent = opts.silent ~= false
+    if opts.remap and not vim.g.vscode then
+      opts.remap = nil
+    end
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
 
--- Resize window using <ctrl> <alt> hjkl keys
-map("n", "<C-A-k>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-A-j>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-A-h>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<C-A-l>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+-- enter normal mode with jk
+map("i", "jk", "<esc>", { desc = "Enter normal mode" })
 
 -- quit
 map("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
@@ -25,23 +25,9 @@ map("n", "<leader>Q", "<cmd>qa!<cr>", { desc = "Quit all" })
 map("n", "<leader>lz", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>l", "<nop>", { desc = "Lazy" })
 
--- Twilight
-map("n", "<leader>tt", "<cmd>:Twilight<cr>", { desc = "Toggle twilight" })
-
--- Clear highlight
-map(
-  "n",
-  "<leader>h",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "Redraw / clear hlsearch / diff update" }
-)
-
--- Insert empty lines
+-- insert empty lines
 map("n", "<leader>o", "o<esc>", { desc = "Insert empty line below" })
 map("n", "<leader>O", "O<esc>", { desc = "Insert empty line above" })
-
--- Enter normal mode with jk
-map("i", "jk", "<esc>", { desc = "Enter normal mode" })
 
 -- toggle options
 map("n", "<leader>tf", require("lazyvim.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })

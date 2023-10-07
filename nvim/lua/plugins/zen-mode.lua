@@ -1,13 +1,10 @@
 return {
   "folke/zen-mode.nvim",
-  dependencies = {
-    "b0o/incline.nvim",
-  },
   cmd = "ZenMode",
   opts = {
     window = {
       backdrop = 1,
-      width = 80,
+      width = 0.8,
       options = {
         number = false,
         relativenumber = false,
@@ -17,14 +14,8 @@ return {
     plugins = {
       gitsigns = true,
       twilight = false,
-      tmux = true,
+      tmux = false,
     },
   },
   keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-  on_open = function(win)
-    require("incline").disable()
-  end,
-  on_close = function()
-    require("incline").enable()
-  end,
 }
