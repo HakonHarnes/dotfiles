@@ -6,3 +6,4 @@ vim.opt.linebreak = true
 vim.opt.laststatus = 0
 vim.opt.autochdir = false
 vim.opt.autoread = true
+vim.g.root_spec = { "cwd" }
