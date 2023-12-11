@@ -18,6 +18,7 @@ return {
       ["markdown.mdx"] = { "prettierd" },
       ["graphql"] = { "prettierd" },
       ["handlebars"] = { "prettierd" },
+      ["typst"] = { "typstfmt" },
     },
   },
 }

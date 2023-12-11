@@ -11,11 +11,10 @@ return {
       },
     },
     keys = {
+      { "<leader><space>", Util.telescope("fd", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>/", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-      { "<leader><space>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<leader>G", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
-      { "<leader>F", Util.telescope("files"), desc = "Find Files (root dir)" },
       { "<leader>r", "<cmd>Telescope resume<cr>", desc = "Resume" },
+      { "<leader>h", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
     },
   },
   {

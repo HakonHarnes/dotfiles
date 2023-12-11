@@ -4,7 +4,7 @@ return {
   opts = {
     window = {
       backdrop = 1,
-      width = 0.8,
+      -- width = 0.8,
       options = {
         number = false,
         relativenumber = false,
@@ -12,9 +12,12 @@ return {
       },
     },
     plugins = {
+      options = {
+        laststatus = 0,
+      },
       gitsigns = true,
       twilight = false,
-      tmux = false,
+      tmux = true,
     },
   },
   keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
