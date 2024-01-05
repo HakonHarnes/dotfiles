@@ -1,0 +1,10 @@
+return {
+  "laytan/tailwind-sorter.nvim",
+  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+  build = "cd formatter && npm i && npm run build",
+  config = true,
+  keys = {
+
+    { "<leader>ts", "<cmd>TailwindSort<cr>", desc = "Sort Tailwind classes" },
+  },
+}
