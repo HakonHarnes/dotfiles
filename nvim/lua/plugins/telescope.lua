@@ -23,4 +23,16 @@ return {
       require("telescope").load_extension("bibtex")
     end,
   },
+
+  "jnk22/telescope-media-files.nvim",
+  config = function()
+    require("telescope").load_extension("media_files")
+  end,
+  {
+    "benfowler/telescope-luasnip.nvim",
+    module = "telescope._extensions.luasnip", -- if you wish to lazy-load
+    config = function()
+      require("telescope").load_extension("luasnip")
+    end,
+  },
 }

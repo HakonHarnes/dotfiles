@@ -19,6 +19,7 @@ return {
       ["graphql"] = { "prettierd" },
       ["handlebars"] = { "prettierd" },
       ["typst"] = { "typstfmt" },
+      ["tex"] = { "latexindent" },
     },
   },
 }

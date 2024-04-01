@@ -1,4 +1,4 @@
 return {
-  "tris203/hawtkeys.nvim",
+  "LunarVim/bigfile.nvim",
   config = true,
 }

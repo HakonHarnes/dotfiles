@@ -13,4 +13,4 @@ vim.api.nvim_create_user_command("Test", function()
   require("img-clip").pasteImage()
 end, {})
 
-vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>:Test<cr>", {})
+-- vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>:so %<cr>", {})

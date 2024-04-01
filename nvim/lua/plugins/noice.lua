@@ -37,6 +37,11 @@ return {
           opts = { skip = true },
         },
       },
+      win_options = {
+        border = {
+          style = "single",
+        },
+      },
     })
   end,
 }

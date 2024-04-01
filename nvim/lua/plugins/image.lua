@@ -1,6 +1,7 @@
 return {
   "3rd/image.nvim",
   -- default config
+  ft = "markdown",
   config = function()
     require("image").setup({
       backend = "kitty",

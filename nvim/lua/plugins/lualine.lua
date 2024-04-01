@@ -1,6 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = function(_, opts)
       opts.sections.lualine_z = {}
