@@ -14,7 +14,7 @@ return {
       ignore = {
         buftypes = { "help" },
       },
-      window = { margin = { vertical = 0, horizontal = 0 }, placement = { vertical = "bottom" } },
+      window = { margin = { vertical = 0, horizontal = 0 }, placement = { vertical = "top" } },
       render = function(props)
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":.")
         local icon, color = require("nvim-web-devicons").get_icon_color(filename)

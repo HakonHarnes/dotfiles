@@ -1,9 +1,9 @@
 return {
-  "abecodes/tabout.nvim", -- Tab out from parenthesis, quotes, brackets...
+  "abecodes/tabout.nvim",
   opts = {
-    tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
-    backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-    completion = true, -- We use tab for completion so set this to true
+    tabkey = "<Tab>",
+    backwards_tabkey = "<S-Tab>",
+    completion = true,
   },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",

@@ -11,6 +11,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+vim.filetype.add({
+  extension = {
+    gliffy = "json",
+  },
+})
+
 require("config.lazy")
 require("config.dev")
 require("config.statusbar")

@@ -21,10 +21,6 @@ map("i", "jk", "<esc>", { desc = "Enter normal mode" })
 map("n", "<leader>Y", "<cmd>:%y+<cr>", { desc = "Copy entire buffer to clipboard" })
 map("n", "<leader>P", ":silent! %delete _ | 0put +<CR>", { desc = "Replace entire buffer with clipboard content" })
 
--- insert empty lines
-map("n", "<leader>o", "o<esc>", { desc = "Insert empty line below" })
-map("n", "<leader>O", "O<esc>", { desc = "Insert empty line above" })
-
 -- bibtex
 map("n", "<c-b>", "<cmd>Telescope bibtex<cr>", { desc = "Open bibtex entries" })
 map("i", "<c-b>", "<cmd>Telescope bibtex<cr>", { desc = "Open bibtex entries" })

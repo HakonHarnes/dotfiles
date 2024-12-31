@@ -12,7 +12,7 @@ return {
     },
     highlights = {
       tab_close = {
-        bg = "#0E0E14",
+        bg = "#1A1B26",
       },
     },
   },

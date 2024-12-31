@@ -1,7 +1,6 @@
 return {
   "kawre/leetcode.nvim",
   branch = "feat-recent-cmd",
-  -- dir = "/home/hakon/leetcode.nvim/",
   build = ":TSUpdate html",
   dependencies = {
     "nvim-telescope/telescope.nvim",
